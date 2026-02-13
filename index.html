@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message for You</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff0f3;
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+            transition: background-color 1s ease;
+        }
+
+        #container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(255, 75, 110, 0.2);
+            border: 2px solid #ffccd5;
+            max-width: 450px;
+            width: 90%;
+            z-index: 10;
+        }
+
+        .heart-icon { font-size: 60px; margin-bottom: 20px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        h1 { color: #c9184a; font-size: 1.8rem; margin-bottom: 30px; }
+        
+        .btn-group { display: flex; justify-content: center; gap: 20px; position: relative; height: 60px; }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        #yesBtn { background: #ff4d6d; color: white; box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3); }
+        
+        #noBtn {
+            background: #590d22;
+            color: white;
+            position: absolute; /* Ensures it can move freely */
+            left: 55%; 
+        }
+
+        #letter {
+            display: none;
+            line-height: 1.8;
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            animation: fadeIn 1.5s ease-in;
+            text-align: left;
+            border-top: 1px solid #ffccd5;
+            padding-top: 20px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="main-content">
+            <div class="heart-icon">💖</div>
+            <h1 id="question">Will you be my Valentine?</h1>
+            
+            <div class="btn-group" id="buttons">
+                <button id="yesBtn" onclick="revealLetter()">Yes!</button>
+                <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+            </div>
+        </div>
+
+        <div id="letter">
+            <h2 style="color: #c9184a; text-align: center; margin-top: 0;">Happy Valentine’s Day!</h2>
+            To the woman who makes my world so much brighter. I’m so lucky to have you by my side, not just today, but every day. 
+            <br><br>
+            Thank you for being my person and for loving me the way you do. I love you more than words can say.
+            <br><br>
+            <center>❤️ Forever Yours Kurt ❤️</center>
+        </div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            // Logic to keep the button inside the visible screen area
+            const padding = 50;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function revealLetter() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('letter').style.display = 'block';
+            document.body.style.backgroundColor = "#ffccd5";
+        }
+    </script>
+</body>
+</html>
